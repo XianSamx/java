@@ -26,6 +26,7 @@ public class BookService {
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with id:"+ id));
         book.setTitle(Book.getTitle());
         book.setAuthor(Book.getAuthor());
+        book.setDescription(Book.getDescription());
         return bookRepository.save(book);
     }
     public void deleteBook(Long id) {

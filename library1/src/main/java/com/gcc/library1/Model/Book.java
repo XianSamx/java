@@ -21,5 +21,7 @@ public class Book {
 
     private String author;
 
+    @Column(length = 2000) // 设置简介字段的最大长度
+    private String description; // 图书简介
     // Getters and Setters
 }

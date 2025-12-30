@@ -147,4 +147,26 @@ public class BookController {
             }
         }
     }
+
+    @PostMapping("/book/{id}")
+    public ResponseEntity<?> getBookById(@PathVariable Long id) {
+        Book book =null;
+        try {
+            book = bookService.getBookById(id);
+        }catch (EntityNotFoundException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
+    @PostMapping("/updateBook")
+    public ResponseEntity<?> updateBook(@RequestBody Book inputBook) {
+        Book book = null;
+        try {
+            book = bookService.updateBook(inputBook.getId(), inputBook);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
 }
